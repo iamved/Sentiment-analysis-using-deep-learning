@@ -20,7 +20,11 @@ import io
 from RNN_language_model import RNN_language_model
 
 glove_embeddings = np.load('../preprocessed_data/glove_embeddings.npy')
+<<<<<<< HEAD
 vocab_size = 8000
+=======
+vocab_size = 100000
+>>>>>>> ef3b09383fff84d4a11a4ab5b6749dff6874e0d9
 
 x_train = []
 with io.open('../preprocessed_data/imdb_train_glove.txt','r',encoding='utf-8') as f:
@@ -53,7 +57,11 @@ y_test[0:12500] = 1
 
 vocab_size += 1
 
+<<<<<<< HEAD
 model = RNN_language_model(vocab_size,500)
+=======
+model = RNN_model(500)
+>>>>>>> ef3b09383fff84d4a11a4ab5b6749dff6874e0d9
 model.cuda()
 
 
@@ -67,6 +75,10 @@ elif(opt=='sgd'):
     optimizer = optim.SGD(model.parameters(), lr=LR, momentum=0.9)
     
 batch_size = 200
+<<<<<<< HEAD
+=======
+no_of_epochs = 20
+>>>>>>> ef3b09383fff84d4a11a4ab5b6749dff6874e0d9
 L_Y_train = len(y_train)
 L_Y_test = len(y_test)
 
@@ -78,7 +90,11 @@ test_accu = []
 
 
 print('begin training...')
+<<<<<<< HEAD
 for epoch in range(0,3):
+=======
+for epoch in range(0,75):
+>>>>>>> ef3b09383fff84d4a11a4ab5b6749dff6874e0d9
 
     if(epoch==50):
         for param_group in optimizer.param_groups:
@@ -115,6 +131,7 @@ for epoch in range(0,3):
         loss.backward()
 
         norm = nn.utils.clip_grad_norm_(model.parameters(),2.0)
+<<<<<<< HEAD
 	
         if(epoch>6):
             for group in optimizer.param_groups:
@@ -122,6 +139,8 @@ for epoch in range(0,3):
                     state = optimizer.state[p]
                     if(state['step']>=1024):
                         state['step'] = 1000
+=======
+>>>>>>> ef3b09383fff84d4a11a4ab5b6749dff6874e0d9
 
         optimizer.step()   # update gradients
         
